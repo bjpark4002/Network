@@ -1,0 +1,32 @@
+
+
+
+1.  open terminal1. 
+    - run sudo mn -c
+    - run sudo mn --mac --switch ovsk  --controller remote,port=6633 (the port you use. (should be matched with pox port))
+
+2.  open terminal2.
+    if you don't have pox, 
+    - run git clone http://github.com/noxrepo/pox
+    - run mv proj4_555.py  ~/pox/pox/misc/
+
+    if you have,
+    - run cd pox
+    - run ./pox.py log.level --DEBUG misc.proj4_455
+    - check if you get the message below
+        INFO:core:POX 0.2.0 (carp) is up.
+        INFO:openflow.of_01:[00-00-00-00-00-01 1] connected
+
+    go back to terminal 1 
+    - run xterm h1 h2
+    in h2, 
+        - run gcc -o server_udp server_udp.c
+        - run ./server_udp output.txt &
+    in h1, 
+        - run gcc -o client_udp client_udp.c
+        - run ./client_udp 10.0.0.2 tux.txt
+
+3.  open terminal3.
+    - run diff tux.txt output.txt
+
+result should be empty.
